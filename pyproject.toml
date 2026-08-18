@@ -70,7 +70,7 @@ dependencies = [
 [project.urls]
 Paper = "https://arxiv.org/abs/2601.21405"
 PaperHTML = "https://arxiv.org/html/2601.21405v2"
-Repository = "https://github.com/kailashhambarde/GeoReID"
+Repository = "https://github.com/kailashhambarde/aerialgeometry"
 
 [project.scripts]
 aerialgeometry = "aerialgeometry.cli:main"

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "aerialgeometry"
-version = "0.1.0"
+version = "0.1.1"
 description = "Vision-only multi-task geometry prediction from single aerial images: altitude, horizontal distance and viewing angle (GeoReID, aerial-ground person re-identification)"
 readme = "README.md"
 requires-python = ">=3.9"
@@ -12,7 +12,6 @@ license = "MIT"
 license-files = ["LICENSE"]
 authors = [
     { name = "Kailash A. Hambarde", email = "kailash.hambarde@ubi.pt" },
-    { name = "Hugo Proença" },
 ]
 keywords = [
     "aerial",

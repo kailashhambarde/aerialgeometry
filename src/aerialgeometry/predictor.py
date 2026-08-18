@@ -27,6 +27,7 @@ __all__ = [
     "DEFAULT_TRANSFORM",
     "DEFAULT_CACHE_DIR",
     "DEFAULT_CACHE_PATH",
+    "DEFAULT_MODEL_URL",
     "MODEL_URL",
     "Prediction",
     "Predictor",
@@ -51,11 +52,13 @@ DEFAULT_CACHE_DIR = os.path.join(os.path.expanduser("~"), ".cache", "aerialgeome
 #: Default checkpoint location inside the cache directory.
 DEFAULT_CACHE_PATH = os.path.join(DEFAULT_CACHE_DIR, "best.pth")
 
-#: Optional URL from which weights are auto-downloaded on first use.
-#: Set the ``AERIALGEOMETRY_MODEL_URL`` environment variable, e.g. to a
-#: GitHub release asset or a Hugging Face file, and the checkpoint is fetched
-#: into :data:`DEFAULT_CACHE_DIR` automatically.
-MODEL_URL = os.environ.get("AERIALGEOMETRY_MODEL_URL", "")
+#: URL from which weights are auto-downloaded on first use. Defaults to the
+#: latest GitHub release asset; override with ``AERIALGEOMETRY_MODEL_URL``.
+DEFAULT_MODEL_URL = (
+    "https://github.com/kailashhambarde/aerialgeometry/"
+    "releases/latest/download/best_slim.pth"
+)
+MODEL_URL = os.environ.get("AERIALGEOMETRY_MODEL_URL", DEFAULT_MODEL_URL)
 
 #: Supported image extensions when scanning folders.
 IMAGE_EXTENSIONS = (".jpg", ".jpeg", ".png")

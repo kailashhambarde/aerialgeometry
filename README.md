@@ -72,25 +72,29 @@ used automatically.
 To install the latest revision straight from git:
 
 ```bash
-python3 -m pip install 'git+https://github.com/kailashhambarde/GeoReID'
+python3 -m pip install 'git+https://github.com/kailashhambarde/aerialgeometry'
 ```
 
 ### Model weights
 
-The trained checkpoint (~100 MB) is **not** bundled with the package. The
-predictor looks for weights in this order:
+The trained checkpoint (~100 MB) is **not** bundled with the package; it is
+downloaded automatically on first use from the GitHub release:
+
+```
+https://github.com/kailashhambarde/aerialgeometry/releases/latest/download/best_slim.pth
+```
+
+The predictor looks for weights in this order:
 
 1. the `--model-path` CLI argument / `model_path=` Python argument,
 2. the `AERIALGEOMETRY_MODEL` environment variable,
 3. cached weights at `~/.cache/aerialgeometry/best.pth`,
-4. an automatic download from the `AERIALGEOMETRY_MODEL_URL` environment
-   variable (e.g. a GitHub release asset or a Hugging Face file).
+4. an automatic download from the URL above (override it with the
+   `AERIALGEOMETRY_MODEL_URL` environment variable).
 
-The simplest setup for end users is to host the checkpoint somewhere public
-and export the URL once:
+So for most users, no setup is needed — just run:
 
 ```bash
-export AERIALGEOMETRY_MODEL_URL="https://github.com/<you>/GeoReID/releases/download/v1.0/best.pth"
 aerialgeometry photos/
 # downloads ~/.cache/aerialgeometry/best.pth on first run, then predicts
 ```
@@ -237,16 +241,24 @@ viewing-angle regimes. Complete tables and ablations are in the
 
 ## Publishing to PyPI
 
-From the project root:
+Releases are published automatically via a PyPI trusted publisher: push a tag
+matching `v*` and `.github/workflows/workflow.yml` builds, validates with
+`twine check`, and uploads the sdist + wheel without any token.
 
 ```bash
-python3 -m pip install build twine
-python3 -m build                     # builds sdist + wheel into dist/
-python3 -m twine upload dist/*       # enter your PyPI credentials
+git tag v0.1.1 && git push origin v0.1.1
 ```
 
-Then users can `pip install aerialgeometry`. Remember to host the checkpoint
-and set `AERIALGEOMETRY_MODEL_URL` (or document `--model-path`).
+To build locally instead:
+
+```bash
+python3 -m pip install build
+python3 -m build
+```
+
+Weights ship separately as a GitHub release asset. Keep the asset named
+`best_slim.pth` on each release — the package downloads
+`releases/latest/download/best_slim.pth`.
 
 ## Citation
 

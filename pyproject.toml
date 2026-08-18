@@ -1,0 +1,79 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aerialgeometry"
+version = "0.1.0"
+description = "Vision-only multi-task geometry prediction from single aerial images: altitude, horizontal distance and viewing angle (GeoReID, aerial-ground person re-identification)"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+    { name = "Kailash A. Hambarde", email = "kailash.hambarde@ubi.pt" },
+    { name = "Hugo Proença" },
+]
+keywords = [
+    "aerial",
+    "aerial-ground",
+    "aerial-ground person re-identification",
+    "ag-reid",
+    "person re-identification",
+    "re-identification",
+    "reid",
+    "uav",
+    "drone",
+    "unmanned aerial vehicle",
+    "camera geometry",
+    "geometry",
+    "geometry prediction",
+    "altitude",
+    "height",
+    "horizontal distance",
+    "distance",
+    "viewing angle",
+    "camera identity",
+    "multi-task learning",
+    "resnet",
+    "resnet-50",
+    "single-image",
+    "cross-view",
+    "similarity distortion",
+    "computer vision",
+    "deep learning",
+    "pytorch",
+    "georeid",
+    "giqt",
+    "surveillance",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+]
+dependencies = [
+    "numpy",
+    "pillow",
+    "tqdm",
+    "torch",
+    "torchvision",
+]
+
+[project.urls]
+Paper = "https://arxiv.org/abs/2601.21405"
+PaperHTML = "https://arxiv.org/html/2601.21405v2"
+Repository = "https://github.com/kailashhambarde/GeoReID"
+
+[project.scripts]
+aerialgeometry = "aerialgeometry.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
